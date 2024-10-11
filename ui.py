@@ -1,6 +1,6 @@
-#ch 7.7.2 ui.py
+#ch 8.1.3 ui.py
 from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, QVBoxLayout,
-                             QMessageBox, QPlainTextEdit, QHBoxLayout, QLineEdit, QComboBox) #QLineEdit, QComboBox 추가
+                             QMessageBox, QPlainTextEdit, QHBoxLayout, QLineEdit, QComboBox, QLabel) #QLabel 추가
 from PyQt5.QtGui import QIcon
 from PyQt5 import QtCore #모듈 추가
 
@@ -14,6 +14,8 @@ class View(QWidget):
         self.te1 = QPlainTextEdit() #텍스트 에디트 위젯 생성
         self.te1.setReadOnly(True) #텍스트 에디트 위젯을 읽기만 가능하도록 수정
 
+        
+        self.lbl1 = QLabel('v2.3.0', self) #버전 정보 표시를 위한 lbl1 위젯 생성
         self.btn1 = QPushButton('Calc', self) #버튼 추가
         self.btn2 = QPushButton('clear', self) #버튼 2 추가
 
@@ -26,9 +28,7 @@ class View(QWidget):
         self.le2.setAlignment(QtCore.Qt.AlignRight) #라인 에디트2 문자열 배치 설정
 
         self.cb = QComboBox(self) #콤보 박스 추가
-        #self.cb.addItems(['+', '-', '*', '/', '^', '%']) #% 연산자 추가
-        self.cb.addItems(['+', '-', '*', '/']) #^, % 연산자 제거
-
+        self.cb.addItems(['+', '-', '*', '/', '^', '%']) #% 연산자 추가
 
         hbox_formular = QHBoxLayout() #새로 정의한 위젯을 QHBoxLayout에 배치
         hbox_formular.addWidget(self.le1)
@@ -37,6 +37,7 @@ class View(QWidget):
 
         hbox = QHBoxLayout() # 수평 박스 레이아웃을 추가하고 버튼1, 2 추가
         hbox.addStretch(1) # 공백
+        hbox.addWidget(self.lbl1) #버전 정보 표시를 위한 lbl1 위젯 생성
         hbox.addWidget(self.btn1) #버튼 1 배치
         hbox.addWidget(self.btn2) #버튼 2 배치
 
